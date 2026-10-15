@@ -17,7 +17,8 @@ for (const route of routes) {
     const blocks = await page.evaluate(() => {
       const out: { sel: string; color: string; x: number; y: number; w: number; h: number }[] = [];
       for (const el of document.querySelectorAll<HTMLElement>("h1, h2, p, li, a, button, label, span, strong")) {
-        if (!el.offsetParent && getComputedStyle(el).position !== "fixed") continue;
+        if (!el.offsetParent) continue; // hidden, or position: fixed (overlays sit on their own solid fill)
+        if (el.closest("[data-overlay]")) continue;
         const own = [...el.childNodes].some((n) => n.nodeType === 3 && (n.textContent ?? "").trim());
         if (!own) continue;
         // Measure the text itself (not the element box) so borders and rounded corners are not mistaken for backdrop.
@@ -27,12 +28,13 @@ for (const route of routes) {
         const r = range.getBoundingClientRect();
         if (r.width < 1 || r.height < 1) continue;
         const cs = getComputedStyle(el);
-        // A full-page capture resizes the viewport, so bottom-anchored fixed elements move to the page bottom.
-        const fixedShift = cs.position === "fixed" && cs.bottom !== "auto" ? document.documentElement.scrollHeight - innerHeight : 0;
-        const inset = 0;
-        out.push({ sel: el.tagName.toLowerCase() + ":" + (el.textContent ?? "").trim().slice(0, 24), color: cs.color, x: r.x + scrollX + inset, y: r.y + scrollY + fixedShift + inset, w: Math.max(1, r.width - 2 * inset), h: Math.max(1, r.height - 2 * inset) });
+        out.push({ sel: el.tagName.toLowerCase() + ":" + (el.textContent ?? "").trim().slice(0, 24), color: cs.color, x: r.x + scrollX, y: r.y + scrollY, w: r.width, h: r.height });
       }
       return out;
+    });
+    // Fixed overlays (the orb star) are not page backdrop: hide them so their borders are not sampled.
+    await page.evaluate(() => {
+      for (const el of document.querySelectorAll<HTMLElement>("body *")) if (getComputedStyle(el).position === "fixed") el.style.visibility = "hidden";
     });
     await page.addStyleTag({ content: "*{color:transparent!important;-webkit-text-fill-color:transparent!important;text-shadow:none!important}" });
     const png = PNG.sync.read(await page.screenshot({ fullPage: true }));
