@@ -22,5 +22,7 @@ Status: Foundation (Phase 0B). Nothing here is public-facing content yet; every 
 ## Checks (CI)
 Static gates, build once with a content hash, theme guard on desktop and iPhone viewports, then (when enabled) a deploy to a separate preview Worker. The preview job stays off until the Cloudflare account exists and `CLOUDFLARE_PREVIEW_ENABLED` is set.
 
-## Not yet decided
-Licence for this repository (until chosen, all rights are reserved). Project content, case studies and CVs arrive in Phase 1.
+## Licence
+Code: MIT (`LICENSE`). Site content (bio, case studies, CVs, images, matcher reason lines): all rights reserved, see `CONTENT-LICENSE.md`.
+
+Project content, case studies and CVs arrive in Phase 1.
