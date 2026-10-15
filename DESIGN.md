@@ -1,4 +1,4 @@
-# DESIGN.md: Deep Interstellar (draft 3)
+# DESIGN.md: Deep Interstellar (draft 3 (passed by the coordinator))
 
 Single source of truth for the look of the site. Every page, component and 3D scene follows this file. A change to the look starts here, never in a component. Two checks guard it: `scripts/theme-tokens-check.mjs` fails the build if `app/globals.css` drifts from the token block, and the theme guard (section 13) compares every page with the last approved look.
 
@@ -81,6 +81,7 @@ Rules for text and controls over the 3D or poster (on the scrim): text is starli
 - Any switch to a still (pause, reduced motion, WebGL lost, tier drop) crossfades with no layout shift.
 - The pause-motion switch sits in the header beside the sound toggle, on every page, reachable by keyboard, and remembers the choice (WCAG 2.2.2).
 - Hover previews meet WCAG 1.4.13 and every hover has a focus and tap equivalent plus a visible control to enter.
+- Repeated controls carry their target in the accessible name, starting with the visible words: "Enter the Data galaxy", "Open case study: <project>" (WCAG 2.4.4, 2.5.3).
 
 ## 6. Effects (3D scene and poster stills only)
 Plan v3 section 4 lists six effects, all kept on every tier: layered star field with depth, drifting nebulae, bloom, film grain (4% opacity, static under reduced motion), gravitational lensing at the black hole, hyperspace streaks.
@@ -93,7 +94,7 @@ Plan v3 section 4 lists six effects, all kept on every tier: layered star field 
 One persistent canvas lives in the shared layout, so there are no reloads or flashes between sections, pages or tracks. A poster frame (a still of the real universe) paints first; the live 3D fades in over it without moving anything. The canvas is `aria-hidden`.
 
 ## 8. Scenes
-Wording follows Plan v3 section 5. "In stardust" in Hero and About means formed from particles, not the `--stardust` colour. The phone line under each scene is a first composition that Phases 1 and 2 refine.
+Wording follows Plan v3 section 5. "In stardust" in Hero and About means formed from particles, not the `--stardust` colour. The visible name is always real HTML text: the Launch and Hero particles resolve into it and never replace it (WCAG 1.4.5). The phone line under each scene is a first composition that Phases 1 and 2 refine.
 | Scene | What it is | Phone composition |
 |---|---|---|
 | Launch `/` | Stars streak in from hyperspace and form "Sai Santhosh Bellam" (first visit only, under 2 s, skippable). Then "Choose your mission" shows the two galaxies side by side: hover or tap to preview, click to fly in. The orb offers: "Hiring? Paste a job ad and I'll take you to the right galaxy." | The galaxies stack, Data above AI; tap previews, a visible "Enter" button flies in. |
@@ -105,7 +106,7 @@ Wording follows Plan v3 section 5. "In stardust" in Hero and About means formed 
 | Journey | An orbit path with a comet, with studies, projects, internships and milestones as waypoints. | A vertical path; waypoints as a text list beside the orbit. |
 | Contact | The black hole with its golden accretion disk, with the form and links at the event horizon. | Form on a panel above the disk; links beneath. |
 | Footer | Mission log (local time and availability), "Switch galaxy" and "Return to launch". | Three stacked lines. |
-| `/work` | A star map of every project across both galaxies, filterable by track, with a plain list view. | List view first, with a visible toggle to the map. |
+| `/work` | A star map of every project across both galaxies, filterable by track, with a plain list view. | The star map first, as on desktop, with a visible toggle to the list; the list comes first only when the 3D isn't running (Static tier). Every project star has a 44 px hit area. |
 | Case study | A destination with its own nebula colour: role, stack, year, links, problem, approach, outcome, gallery, then "Next destination" within the current track. The nebula colour is one of the three nebula tokens or a blend of two, set in content. | Single column; gallery as a swipeable row with arrow buttons. |
 | 404 | Particles drift apart into the void, with a way home. | "Signal lost" and a Return to launch button. |
 

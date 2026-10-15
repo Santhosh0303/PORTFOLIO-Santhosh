@@ -63,6 +63,11 @@ body {
   line-height: 1.6;
 }
 
+/* Keep the floating orb star from covering the last lines of any page. */
+main {
+  padding-bottom: var(--space-8);
+}
+
 a {
   color: var(--gold);
   text-decoration: underline;
