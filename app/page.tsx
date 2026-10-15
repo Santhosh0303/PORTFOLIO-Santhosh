@@ -18,12 +18,12 @@ export default function Launch() {
       >
         <Link href="/data/" className="card" style={{ textDecoration: "none", color: "inherit" }}>
           <p className="label">GALAXY 01</p>
-          <h2 className="headline" style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)" }}>Data</h2>
+          <h2 className="headline h2">Data</h2>
           <p style={{ color: "var(--stardust)" }}>A barred spiral of data streams.</p>
         </Link>
         <Link href="/ai/" className="card" style={{ textDecoration: "none", color: "inherit" }}>
           <p className="label">GALAXY 02</p>
-          <h2 className="headline" style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)" }}>AI</h2>
+          <h2 className="headline h2">AI</h2>
           <p style={{ color: "var(--stardust)" }}>A neural nebula of firing filaments.</p>
         </Link>
       </div>

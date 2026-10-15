@@ -47,7 +47,7 @@ export default function OrbPanel() {
         maxLength={MAX_AD_CHARS}
         rows={6}
         aria-label="Job ad text"
-        style={{ width: "100%", background: "var(--void)", color: "var(--starlight)", border: "1px solid var(--line-strong)", borderRadius: "var(--radius-m)", padding: "var(--space-3)", font: "inherit" }}
+        className="field" style={{ width: "100%" }}
       />
       <button type="button" className="btn" onClick={run} disabled={busy || text.trim().length === 0}>
         {busy ? "Matching..." : "Match"}

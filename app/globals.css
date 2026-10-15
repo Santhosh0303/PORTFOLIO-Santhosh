@@ -12,10 +12,12 @@
   --nebula-magenta: #d9468f;
   --line: rgb(238 241 248 / 0.12);
   --line-strong: rgb(238 241 248 / 0.24);
+  --control: var(--stardust);
+  --scrim: rgb(3 4 10 / 0.72);
   --focus: #ffb45a;
-  --radius-s: 6px;
-  --radius-m: 12px;
-  --radius-l: 20px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --dur-fast: 150ms;
@@ -44,6 +46,8 @@
 }
 
 html {
+  scroll-padding-top: var(--space-9);
+  scroll-padding-bottom: var(--space-9);
   background: var(--void);
   color: var(--starlight);
   -webkit-text-size-adjust: 100%;
@@ -61,6 +65,7 @@ body {
 
 a {
   color: var(--gold);
+  text-decoration: underline;
   text-underline-offset: 0.2em;
 }
 
@@ -83,7 +88,7 @@ a {
 }
 
 .hero {
-  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-size: clamp(2.5rem, 0.5rem + 7vw, 6rem);
   text-transform: uppercase;
 }
 
@@ -94,6 +99,27 @@ a {
   padding-inline: var(--space-4);
 }
 
+.h1 {
+  font-size: clamp(2rem, 1rem + 3.5vw, 3.5rem);
+}
+
+.h2 {
+  font-size: clamp(1.5rem, 1rem + 1.8vw, 2.25rem);
+}
+
+.scrim {
+  background: var(--scrim);
+}
+
+.field {
+  background: var(--void);
+  color: var(--starlight);
+  border: 1px solid var(--control);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font: inherit;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -102,7 +128,7 @@ a {
   min-width: 44px;
   padding: 0 var(--space-5);
   border: 1px solid var(--gold);
-  border-radius: var(--radius-m);
+  border-radius: var(--radius-md);
   background: var(--panel);
   color: var(--gold);
   text-decoration: none;
@@ -116,7 +142,7 @@ a {
 .card {
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: var(--radius-l);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
 }
 
