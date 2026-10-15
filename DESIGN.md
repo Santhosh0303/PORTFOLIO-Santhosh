@@ -49,9 +49,9 @@ Colour use:
 |---|---|
 | void | page background |
 | panel | cards, orb panel, header when scrolled |
-| starlight | primary text (contrast on void 17.8:1) |
-| stardust | secondary text, labels (contrast on void 6.4:1; never below 16px on phones) |
-| gold | links, buttons, focus ring, the black-hole disk, active states |
+| starlight | primary text (contrast 18.1:1 on void, 17.0:1 on panel) |
+| stardust | secondary text, labels (contrast 6.4:1 on void, 6.0:1 on panel; AA for all sizes) |
+| gold | links, buttons, focus ring, the black-hole disk, active states (contrast 11.6:1 on void, 10.9:1 on panel) |
 | nebula-* | 3D scenes and decorative gradients only; never text or controls |
 
 ## 3. Typography
