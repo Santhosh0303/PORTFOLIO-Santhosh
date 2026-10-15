@@ -1,0 +1,21 @@
+{
+  // One Worker: static assets (Next.js export in ../out) + same-origin API under /api/*.
+  // Account/database ids are filled by the pipeline from secrets, never committed.
+  "name": "portfolio-santhosh-preview",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true, // preview only; production config sets this to false
+  "assets": {
+    "directory": "../out",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/api/*"]
+  },
+  "ai": { "binding": "AI" },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "portfolio-preview", "database_id": "REPLACED_BY_PIPELINE", "migrations_dir": "migrations" }
+  ],
+  "triggers": { "crons": ["15 3 * * *"] },
+  "vars": { "ENVIRONMENT": "preview", "AI_DAILY_NEURON_LIMIT": "10000", "AI_GUARD_RATIO": "0.9" }
+}

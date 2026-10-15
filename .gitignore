@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+.wrangler
+.dev.vars
+*.log
+.DS_Store
+playwright-report
+test-results
+theme-guard/actual
+.env*
+!.env.example
+next-env.d.ts
+*.tsbuildinfo
